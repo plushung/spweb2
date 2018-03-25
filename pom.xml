@@ -4,4 +4,21 @@
   <artifactId>spweb2</artifactId>
   <version>1</version>
   <packaging>war</packaging>
+ 
+  <dependencies>
+  <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        
+    </dependency>
+  </dependencies>
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+  			<groupId>org.springframework</groupId>
+  			<artifactId>spring-context</artifactId>
+  			<version>5.0.4.RELEASE</version>
+  		</dependency>
+  	</dependencies>
+  </dependencyManagement>
 </project>
