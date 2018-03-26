@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -44,16 +45,21 @@ public class sqlt {
 		num=a++;
 		// TODO 自动生成的构造函数存根
 		//----访问数据库的模版
+		
 		try {
 			System.out.println("从数据源获取连接");
 			con=das.getConnection();
+//			con.setAutoCommit(false);
 			datas=con.createStatement();
 			System.out.println("创建SQL语句对象，用于发送数据");
 		} catch (SQLException /*| ClassNotFoundException */e) {
 			e.printStackTrace();
 		}
 	}
-	
+	public void descom() throws SQLException{
+		this.DestoryUser(125);
+		this.DestoryUser(1201389893);
+	}
 	synchronized 
 	public void closeall(){
 		try {
@@ -189,15 +195,9 @@ public class sqlt {
 		}
 		return state;
 	}
-	public boolean DestoryUser(int id){//删除用户
+	public boolean DestoryUser(int id) throws SQLException{//删除用户
 		boolean state=true;
-		try {
 			excuteU("delete from password where id="+id+"");
-		} catch (SQLException e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-			state=false;
-		}
 		try {
 			excuteU("delete from usertable where id="+id+"");
 		} catch (SQLException e) {
